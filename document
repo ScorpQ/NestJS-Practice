@@ -1,0 +1,6 @@
+Nest CLI ile module veya controller oluşturalabilir:
+    nest generate module <module_name>
+    nest generate controller <controller_name>
+
+
+...
