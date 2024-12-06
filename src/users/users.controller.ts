@@ -1,7 +1,13 @@
 import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
+import { UsersService } from './users.service';
 
 @Controller('users')
 export class UsersController {
+    // Dependecy Injection yapmak bu kadar kolay,
+    // Sadece eklemek istediğin service/controller adını yazman yeterli
+    // Normal yolla hiç DI yapmadığın için anlamak zor olur
+    // İstersen GPT'ye şunu yaz: Bana basitçe Dependency Injection anlatır mısın çok basitçe başla...
+    constructor(private userService: UsersService) {}
 
     // Bu şekilde basit bir endpoint yazabiliriz: localhost:3000/users
     @Get()
