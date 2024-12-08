@@ -1,5 +1,6 @@
 import { Controller, Get, Post, Param, Body, ParseIntPipe } from '@nestjs/common';
 import { UsersService } from './users.service';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Controller('users')
 export class UsersController {
@@ -26,9 +27,12 @@ export class UsersController {
         return this.userService.findById(id);
     }
 
+
+    // Burada ise br post metodu var ve body'nin tipi
+    // az önce oluşturduğumuz 'createUserDto' field'larını alabilir demektir.
     @Post()
-    createUser(@Body() body): Number {
-        return this.userService.createUser(body.name);
+    createUser(@Body() body: CreateUserDto): Number {
+        return this.userService.createUser(body);
     }
 }
 
