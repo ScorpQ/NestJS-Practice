@@ -12,7 +12,7 @@ export class UsersController {
     // Bu şekilde basit bir endpoint yazabiliriz: localhost:3000/users
     @Get()
     getUsers(): any {
-        return [{id: 10}]
+        return [{id: 10}] 
     }
 
 
