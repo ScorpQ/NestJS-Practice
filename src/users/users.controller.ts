@@ -1,4 +1,4 @@
-import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Post, Param, Body, ParseIntPipe } from '@nestjs/common';
 import { UsersService } from './users.service';
 
 @Controller('users')
@@ -12,7 +12,7 @@ export class UsersController {
     // Bu şekilde basit bir endpoint yazabiliriz: localhost:3000/users
     @Get()
     getUsers(): any {
-        return [{id: 10}] 
+        return this.userService.findAll();
     }
 
 
@@ -22,11 +22,13 @@ export class UsersController {
     // build-in pipe'lardan birini kullanabiliriz. (ParseIntPipe)
     // Daha fazlası için: https://docs.nestjs.com/pipes
     @Get(':id')  
-    getUsersById(@Param('id', ParseIntPipe) id: number): any {
-        return {
-            'type': typeof id,
-            'id': id 
-        }
+    getUsersById(@Param('id', ParseIntPipe) id: number): String {
+        return this.userService.findById(id);
+    }
+
+    @Post()
+    createUser(@Body() body): Number {
+        return this.userService.createUser(body.name);
     }
 }
 
